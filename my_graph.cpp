@@ -13,6 +13,9 @@ namespace own_graph {
 			if (way != 0) 
 				weight = way;
 		}
+		void print_edge() const {
+			cout << start << " ---> " << end << ", weight: " << weight << endl;
+		}
 	};
 	template<typename Vertex, typename Distance = double>
 	class Graph {
@@ -56,6 +59,67 @@ namespace own_graph {
 				cout << ' ' << _vertices[i];
 			}
 			cout << " }" << endl;
+		}
+
+		void add_edge(const Vertex& from, const Vertex& to, const Distance& d) {
+			Edge<Vertex, Distance> new_edge(from, to, d);
+			if (has_vertex(from) && has_vertex(to)) {
+				_edges.push_back(new_edge);
+			}
+		}
+
+		bool remove_edge(const Vertex& from, const Vertex& to) {
+			for (size_t i = 0; i < _edges.size(); i++) {
+				if (_edges[i].start == from && _edges[i].end == to) {
+					_edges.erase(_edges.begin() + i);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool remove_edge(const Edge<Vertex, Distance>& edge) {
+			for (size_t i = 0; i < _edges.size(); i++) {
+				if (_edges[i].start == edge.start && _edges[i].end == edge.end && _edges[i].weight == edge.weight) {
+					_edges.erase(_edges.begin() + i);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool has_edge(const Vertex& from, const Vertex& to) {
+			for (size_t i = 0; i < _edges.size(); i++) {
+				if (_edges[i].start == from && _edges[i].end == to) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool has_edge(const Edge<Vertex, Distance>& edge) {
+			for (size_t i = 0; i < _edges.size(); i++) {
+				if (_edges[i].start == edge.start && _edges[i].end == edge.end && _edges[i].weight == edge.weight) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		void print_edges() const {
+			for (size_t i = 0; i < _edges.size(); i++) {
+				_edges[i].print_edge();
+			}
+		}
+
+		vector<Edge<Vertex, Distance>> edges(const Vertex& vertex) {
+			vector<Edge<Vertex, Distance>> result;
+			for (size_t i = 0; i < _edges.size(); i++) {
+				if (_edges[i].start == vertex) {
+					result.push_back(_edges[i]);
+				}
+			}
+			return result;
 		}
 	};
 }

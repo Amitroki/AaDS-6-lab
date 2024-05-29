@@ -50,3 +50,21 @@ TEST(GraphTest, CheckingTheSetValues2) {
 	a.add_vertex(10);
 	a.print_vertices();
 }
+TEST(GraphTest, CheckingTheSetValues3) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 30);
+	a.add_edge(2, 5, 10);
+	a.print_edges();
+	a.add_edge(2, 4, 15);
+	a.print_edges();
+	auto b = a.edges(2);
+	for (size_t i = 0; i < b.size(); i++) {
+		b[i].print_edge();
+	}
+}
