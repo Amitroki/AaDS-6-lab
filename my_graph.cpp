@@ -112,7 +112,7 @@ namespace own_graph {
 			}
 		}
 
-		vector<Edge<Vertex, Distance>> edges(const Vertex& vertex) {
+		vector<Edge<Vertex, Distance>> edges(const Vertex& vertex) const {
 			vector<Edge<Vertex, Distance>> result;
 			for (size_t i = 0; i < _edges.size(); i++) {
 				if (_edges[i].start == vertex) {
@@ -121,5 +121,14 @@ namespace own_graph {
 			}
 			return result;
 		}
+
+		size_t order() const {
+			return _vertices.size();
+		}
+
+		size_t degree(const Vertex& v) const {
+			return edges(v).size();
+		}
+
 	};
 }
