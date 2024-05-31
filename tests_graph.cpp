@@ -81,3 +81,19 @@ TEST(GraphTest, CheckingTheSetValues4) {
 	a.print_edges();
 	EXPECT_NE(2, a.degree(2));
 }
+TEST(GraphTest, CheckingTheSetValues5) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 30);
+	a.add_edge(2, 5, 10);
+	a.add_edge(1, 2, 50);
+	a.add_edge(0, 5, 7);
+	a.add_edge(0, 2, 7);
+	auto b = a.walk(0);
+
+}

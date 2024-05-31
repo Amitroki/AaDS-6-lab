@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <queue>
+#include <unordered_map>
+#include <set>
 
 using namespace std;
 
@@ -9,13 +12,16 @@ namespace own_graph {
 		Vertex start;
 		Vertex end;
 		Distance weight;
-		Edge(Vertex first, Vertex second, Distance way = 0): start(first), end(second) {
-			if (way != 0) 
-				weight = way;
-		}
+		Edge(Vertex first, Vertex second, Distance way = 0): start(first), end(second), weight(way) {}
 		void print_edge() const {
 			cout << start << " ---> " << end << ", weight: " << weight << endl;
 		}
+	};
+	struct Condition {
+		bool no;
+		bool yet_no;
+		bool already;
+		Condition() : no(false), yet_no(false), already(false) {};
 	};
 	template<typename Vertex, typename Distance = double>
 	class Graph {
@@ -130,5 +136,32 @@ namespace own_graph {
 			return edges(v).size();
 		}
 
+		vector<Vertex> walk(const Vertex& vert) const {
+			queue<Vertex> good_queue;
+			good_queue.push(vert);
+			vector<Vertex> result;
+
+			unordered_map<Vertex, bool> visited_vertices;
+			for (auto& one_vertex : _vertices) {
+				visited_vertices[one_vertex] = false;
+			}
+			visited_vertices[vert] = true;
+
+			while (!good_queue.empty()) {
+				Vertex element = good_queue.front();
+				good_queue.pop();
+				for (auto& edge : edges(element)) {
+					if (!visited_vertices[edge.end]) {
+						good_queue.push(edge.end);
+						result.push_back(edge.end);
+						visited_vertices[edge.end] = true;
+						cout << edge.end << " ";
+					}
+				}
+				cout << endl;
+				visited_vertices[element] = true;
+			}
+			return vector<Vertex>(result.begin(), result.end());
+		}
 	};
 }
