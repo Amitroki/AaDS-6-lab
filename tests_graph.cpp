@@ -95,5 +95,141 @@ TEST(GraphTest, CheckingTheSetValues5) {
 	a.add_edge(0, 5, 7);
 	a.add_edge(0, 2, 7);
 	auto b = a.walk(0);
-
+}
+TEST(GraphTest, CheckingTheSetValues6) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 10);
+	a.add_edge(1, 5, 2);
+	int result;
+	auto b = a.shortest_path(0, 5);
+	a.print_path(b);
+}
+TEST(GraphTest, CheckingTheSetValues7) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(0, 2, 3);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	int result;
+	auto b = a.shortest_path(0, 5);
+	a.print_path(b);
+}
+TEST(GraphTest, CheckingTheSetValues8) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(0, 2, 3);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	a.add_edge(0, 3, 3);
+	a.add_edge(3, 4, 5);
+	int result;
+	auto b = a.shortest_path(0, 5);
+	a.print_path(b);
+	EXPECT_EQ(a.count_path(b), 9);
+}
+TEST(GraphTest, CheckingTheSetValues9) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(0, 1, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(0, 2, 3);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	a.add_edge(0, 3, 3);
+	a.add_edge(3, 4, 5);
+	cout << "The most remote emergency room: " << a.find_the_most_remote_emergency_room() << endl;
+}
+TEST(GraphTest, CheckingTheSetValues10) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(1, 0, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(1, 2, 3);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	a.add_edge(1, 3, 3);
+	a.add_edge(3, 4, 5);
+	cout << "The most remote emergency room: " << a.find_the_most_remote_emergency_room() << endl;
+}
+TEST(GraphTest, CheckingTheSetValues11) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(1, 1, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(0, 2, 3);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	a.add_edge(0, 3, 3);
+	a.add_edge(3, 4, 5);
+	a.add_edge(3, 4, 90);
+	cout << "The most remote emergency room: " << a.find_the_most_remote_emergency_room() << endl;
+}
+TEST(GraphTest, CheckingTheSetValues12) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_vertex(4);
+	a.add_vertex(5);
+	a.add_edge(1, 1, 10);
+	a.add_edge(1, 5, 2);
+	a.add_edge(0, 2, 300);
+	a.add_edge(2, 4, 5);
+	a.add_edge(4, 5, 1);
+	a.add_edge(0, 3, 300);
+	a.add_edge(3, 4, 5);
+	a.add_edge(3, 4, 90);
+	a.add_edge(0, 5, 100);
+	cout << "The most remote emergency room: " << a.find_the_most_remote_emergency_room() << endl;
+}
+TEST(GraphTest, CheckingTheSetValues13) {
+	Graph<int, int> a;
+	a.add_vertex(0);
+	a.add_vertex(1);
+	a.add_vertex(2);
+	a.add_vertex(3);
+	a.add_edge(0, 1, 5);
+	a.add_edge(0, 2, 3);
+	a.add_edge(2, 1, 1);
+	a.add_edge(1, 3, 4);
+	a.add_edge(2, 3, 4);
+	auto b = a.shortest_path(0, 3);
+	a.print_path(b);
+	EXPECT_EQ(a.count_path(b), 7);
 }
